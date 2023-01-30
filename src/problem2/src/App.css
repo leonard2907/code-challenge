@@ -1,0 +1,10 @@
+body {
+  background-color: gray;
+}
+
+.parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
