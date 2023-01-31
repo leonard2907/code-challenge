@@ -1,0 +1,13 @@
+SELECT DISTINCT b.address
+FROM (
+  SELECT b.address, b.amount,
+    CASE 
+      WHEN b.denom = 'usdc' THEN b.amount * 0.000001
+      WHEN b.denom = 'swth' THEN b.amount * 0.00000005
+      WHEN b.denom = 'tmz' THEN b.amount * 0.003
+      ELSE b.amount 
+    END AS calculated_field
+  FROM balances b
+) b
+JOIN trades t USING(address)
+WHERE t.block_height > 730000 AND calculated_field > 500;
